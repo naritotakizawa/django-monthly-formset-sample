@@ -1,0 +1,19 @@
+{% extends 'app/base.html' %}
+
+{% block content %}
+    <p><a href="{% url 'app:monthly_list' %}">月次リストへ</a></p>
+    <form action="" method="POST">
+        {{ form.as_p }}
+        {{ formset.management_form }}
+        {% for day_form in formset %}
+            {% for field in day_form.hidden_fields %}
+                {{ field }}
+            {% endfor %}
+            <p>
+                {{ day_form.instance.day }}日: {{ day_form.value }}<!-- 29日: 入力欄 のようになる -->
+            </p>
+        {% endfor %}
+        {% csrf_token %}
+        <button type="submit">送信</button>
+    </form>
+{% endblock %}

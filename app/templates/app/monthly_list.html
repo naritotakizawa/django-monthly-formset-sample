@@ -1,0 +1,9 @@
+{% extends 'app/base.html' %}
+
+{% block content  %}
+    <p><a href="{% url 'app:monthly_add' %}">新しい月の作成</a></p>
+    <h2>月次リスト</h2>
+    {% for monthly in monthly_list %}
+        <p><a href="{% url 'app:monthly_update' monthly.pk %}">{{ monthly }}</a></p>
+    {% endfor %}
+{% endblock %}
